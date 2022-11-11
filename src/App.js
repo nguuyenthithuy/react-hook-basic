@@ -26,7 +26,10 @@ const App = () => {
       alert('Missing input adress')
       return;
     }
-    let newtodo = { id: 'abc', title: Adress }
+    let newtodo = {
+      id: Math.floor((Math.random() * 10000) + 1),
+      title: Adress,
+    }
 
     setTodo([...todos, newtodo])
     setAdress('')
@@ -37,8 +40,16 @@ const App = () => {
   const handleOnchaneInput = (event) => {
     setAdress(event.target.value)
   }
+
   // re-render
   //for - for each => map
+
+  const deleteDataTodos = (id) => {
+    let currentTodos = todos;
+    currentTodos = currentTodos.filter(item => item.id !== id);
+    setTodo(currentTodos)
+
+  }
 
   return (
     <div className="App">
@@ -48,12 +59,14 @@ const App = () => {
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Hello Nguyễn Thị {name} with Hook </h1>
         <Todo
-          myData={todos}
+          todos={todos}
           title={'All Title'}
+          deleteDataTodos={deleteDataTodos}
         />
         <Todo
-          myData={todos.filter(item => item.type === 'Thủy')}
+          todos={todos.filter(item => item.type === 'Thủy')}
           title={'Title Thủy'}
+          deleteDataTodos={deleteDataTodos}
         />
         <input type="text" value={Adress} onChange={(event) => handleOnchaneInput(event)} />
         <button type='button' onClick={(event) => handleOnClickme(event)}>Click</button>
