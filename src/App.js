@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Nav from './views/Nav.js';
 import { useState } from 'react';
+import Todo from './views/Todo';
 
 
 const App = () => {
@@ -44,16 +45,9 @@ const App = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Hello Nguyễn Thị {name} with Hook </h1>
-        <div className='todos-container'>
-          {todos.map((todo) => {
-            return (
-              <li className='todo-chill' key={todo.id}>{todo.title}</li>
-            )
-          })}
-
-
-        </div>
-
+        <Todo
+          myData={todos}
+        />
         <input type="text" value={Adress} onChange={(event) => handleOnchaneInput(event)} />
         <button type='button' onClick={(event) => handleOnClickme(event)}>Click</button>
       </header>
