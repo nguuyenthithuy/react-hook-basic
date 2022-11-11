@@ -5,10 +5,29 @@ import { useState } from 'react';
 
 
 const App = () => {
+
+  //state
   let [name, setName] = useState('Thủy'); // [a1,b1,c1.....]
 
+  let [todos, setTodo] = useState([
+    { id: 'todo1', title: 'Teacher' },
+    { id: 'todo2', title: 'Doing home work' },
+    { id: 'todo3', title: 'Playing game' }
+  ])
+
+  // adress chỉ là một cái để ghi thôi k phai địa chỉ
+
   const handleOnClickme = (event) => {
-    setName(Adress)
+    // hook not merge state
+    // ...spread synstax arrayjs
+    if (!Adress) {
+      alert('Missing input adress')
+      return;
+    }
+    let newtodo = { id: 'abc', title: Adress }
+
+    setTodo([...todos, newtodo])
+    setAdress('')
   }
 
   const [Adress, setAdress] = useState('');
@@ -16,7 +35,8 @@ const App = () => {
   const handleOnchaneInput = (event) => {
     setAdress(event.target.value)
   }
-
+  // re-render
+  //for - for each => map
 
   return (
     <div className="App">
@@ -24,6 +44,15 @@ const App = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Hello Nguyễn Thị {name} with Hook </h1>
+        <div className='todos-container'>
+          {todos.map((todo) => {
+            return (
+              <li className='todo-chill' key={todo.id}>{todo.title}</li>
+            )
+          })}
+
+
+        </div>
 
         <input type="text" value={Adress} onChange={(event) => handleOnchaneInput(event)} />
         <button type='button' onClick={(event) => handleOnClickme(event)}>Click</button>
