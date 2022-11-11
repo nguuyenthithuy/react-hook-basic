@@ -11,9 +11,10 @@ const App = () => {
   let [name, setName] = useState('Thủy'); // [a1,b1,c1.....]
 
   let [todos, setTodo] = useState([
-    { id: 'todo1', title: 'Teacher' },
-    { id: 'todo2', title: 'Doing home work' },
-    { id: 'todo3', title: 'Playing game' }
+    { id: 'todo1', title: 'Teacher', type: 'Thủy' },
+    { id: 'todo2', title: 'Doing home work', type: 'Thủy' },
+    { id: 'todo3', title: 'Playing game', type: 'Đạt' },
+    { id: 'todo4', title: 'Reading books', type: 'Đạt' }
   ])
 
   // adress chỉ là một cái để ghi thôi k phai địa chỉ
@@ -41,12 +42,18 @@ const App = () => {
 
   return (
     <div className="App">
-      <Nav />
+
       <header className="App-header">
+        <Nav />
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Hello Nguyễn Thị {name} with Hook </h1>
         <Todo
           myData={todos}
+          title={'All Title'}
+        />
+        <Todo
+          myData={todos.filter(item => item.type === 'Thủy')}
+          title={'Title Thủy'}
         />
         <input type="text" value={Adress} onChange={(event) => handleOnchaneInput(event)} />
         <button type='button' onClick={(event) => handleOnClickme(event)}>Click</button>
